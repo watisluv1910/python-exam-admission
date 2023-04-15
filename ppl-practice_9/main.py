@@ -119,8 +119,3 @@ sv = StackVisitor()
 print(pv.visit(ast))
 print(cv.visit(ast))
 sv.visit(ast)
-
-# a = Mul(Num(-1), Mul(Add(Sub(Mul(Num(10), Num(5)), Add(Num(16), Num(17))), Sub(Mul(Num(20), Num(5)), Add(Num(16), Num(45)))), Add(Sub(Mul(Num(2), Num(5)), Add(Num(16), Num(4))), Sub(Mul(Num(2), Num(5)), Add(Num(16), Num(45))))))
-# print(pv.visit(a))
-# print(cv.visit(a))
-# sv.visit(a)
