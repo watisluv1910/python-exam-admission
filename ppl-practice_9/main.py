@@ -16,7 +16,7 @@ class Info(ABC):
         pass
 
     @abstractmethod
-    def get_stac(self):
+    def get_stack(self):
         pass
 
 
@@ -39,7 +39,7 @@ class Num(Info):
     def get_result(self):
         return self.digit
 
-    def get_stac(self):
+    def get_stack(self):
         return f"PUSH {self.digit}\n"
 
 
@@ -57,8 +57,8 @@ class Add(Info):
     def get_result(self):
         return self.obj_a.get_result() + self.obj_b.get_result()
 
-    def get_stac(self):
-        return f"{self.obj_a.get_stac()}{self.obj_b.get_stac()}ADD\n"
+    def get_stack(self):
+        return f"{self.obj_a.get_stack()}{self.obj_b.get_stack()}ADD\n"
 
 
 class Sub(Info):
@@ -75,8 +75,8 @@ class Sub(Info):
     def get_result(self):
         return self.obj_a.get_result() - self.obj_b.get_result()
 
-    def get_stac(self):
-        return f"{self.obj_a.get_stac()}{self.obj_b.get_stac()}SUB\n"
+    def get_stack(self):
+        return f"{self.obj_a.get_stack()}{self.obj_b.get_stack()}SUB\n"
 
 
 class Mul(Info):
@@ -93,8 +93,8 @@ class Mul(Info):
     def get_result(self):
         return self.obj_a.get_result() * self.obj_b.get_result()
 
-    def get_stac(self):
-        return f"{self.obj_a.get_stac()}{self.obj_b.get_stac()}MUL\n"
+    def get_stack(self):
+        return f"{self.obj_a.get_stack()}{self.obj_b.get_stack()}MUL\n"
 
 
 class PrintVisitor(Visitor):
@@ -109,7 +109,7 @@ class CalcVisitor(Visitor):
 
 class StackVisitor(Visitor):
     def visit(self, obj: Info):
-        print(obj.get_stac())
+        print(obj.get_stack())
 
 
 ast = Add(Num(7), Mul(Num(3), Num(2)))
@@ -120,7 +120,7 @@ print(pv.visit(ast))
 print(cv.visit(ast))
 sv.visit(ast)
 
-a = Mul(Num(-1), Mul(Add(Sub(Mul(Num(10), Num(5)), Add(Num(16), Num(17))), Sub(Mul(Num(20), Num(5)), Add(Num(16), Num(45)))), Add(Sub(Mul(Num(2), Num(5)), Add(Num(16), Num(4))), Sub(Mul(Num(2), Num(5)), Add(Num(16), Num(45))))))
-print(pv.visit(a))
-print(cv.visit(a))
-sv.visit(a)
+# a = Mul(Num(-1), Mul(Add(Sub(Mul(Num(10), Num(5)), Add(Num(16), Num(17))), Sub(Mul(Num(20), Num(5)), Add(Num(16), Num(45)))), Add(Sub(Mul(Num(2), Num(5)), Add(Num(16), Num(4))), Sub(Mul(Num(2), Num(5)), Add(Num(16), Num(45))))))
+# print(pv.visit(a))
+# print(cv.visit(a))
+# sv.visit(a)
